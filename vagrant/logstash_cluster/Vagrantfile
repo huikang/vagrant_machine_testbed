@@ -1,0 +1,11 @@
+require_relative '../shared.rb'
+
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.ssh.password = 'vagrant'
+
+  create_vm(config, id: 1)
+  create_vm(config, id: 2)
+  create_vm(config, id: 3)
+  create_vm(config, id: 4)
+end

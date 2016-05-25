@@ -1,0 +1,16 @@
+---
+- debug: msg = "osv role main task file"
+
+- name: Download Capstan installation script
+  get_url:
+    url: https://raw.githubusercontent.com/cloudius-systems/capstan/master/scripts/download
+    dest: /capstan_install_script
+    mode: 0755
+  register: exists
+  when: capstan_install_type == 'binary'
+
+- name: Run Capstan installation script
+  shell: "/capstan_install_script"
+  when:
+    - exists.changed
+    - capstan_install_type == 'binary'

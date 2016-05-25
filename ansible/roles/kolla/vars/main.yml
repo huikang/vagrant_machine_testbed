@@ -1,0 +1,15 @@
+---
+# file: roles/kolla/vars/main.yml
+
+# Refer to https://github.com/stackforge/kolla/blob/master/doc/ansible-deployment.rst
+# or templates/globals.yml
+
+# a virtual IP which is not used by any interface
+kolla_internal_address: "192.168.4.100"
+
+# Used by mysql and all other services
+network_interface: "eth1"
+
+neutron_external_interface: "eth2"
+
+docker_pull_policy: "missing"

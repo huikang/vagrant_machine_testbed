@@ -1,0 +1,84 @@
+---
+# file: non-coreos-site.yml
+
+# Available roles: kolla
+
+- name: Prepare all nodes
+  hosts: all
+  roles:
+    - osprepare
+  tags:
+    - phase1
+
+- name: Install docker
+  hosts: all
+  roles:
+    - docker
+  tags:
+    - docker
+
+- name: Prepare hyper
+  hosts: hyper
+  roles:
+    - golang
+    - hyper
+  tags:
+    - hyper
+
+- name: Prepare OSv host
+  hosts: osv
+  roles:
+    - golang
+    - qemu
+    - osv
+  tags:
+    - osv
+
+- name: Prepare OVN host
+  hosts: ovn
+  roles:
+    - osprepare
+    - ovn
+  tags:
+    - ovn
+
+- name: Install kolla
+  hosts: kolla
+
+  roles:
+    - kolla
+  tags:
+    - kolla
+
+- name: Prepare docker
+  hosts: docker-dev
+
+  roles:
+    - docker-dev
+  tags:
+    - docker-dev
+
+- name: Heroku Go env
+  hosts: heroku-dev
+
+  roles:
+    - heroku
+  tags:
+    - heroku
+
+- name: GO program
+  hosts: go-dev
+
+  roles:
+    - golang
+  tags:
+    - golang
+
+- name: k8s machines
+  hosts: k8s
+
+  roles:
+    - golang
+    - k8s
+  tags:
+    - k8s

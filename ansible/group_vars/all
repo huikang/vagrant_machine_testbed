@@ -1,0 +1,13 @@
+---
+# file: group_vars/all
+
+docker_image_repo_ip:   9.12.248.205
+docker_image_repo_port: 5000
+
+docker_daemon_storage: aufs
+
+fleet_dir: /root/container-openstack-controller/etcd_fleet_services
+fleet_template_dir: "{{ fleet_dir}}/template"
+fleet_static_dir: "{{ fleet_dir}}/static"
+
+machineType: vm

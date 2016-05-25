@@ -1,0 +1,10 @@
+---
+# file: roles/docker-dev/tasks/main.yml
+- name: Copy docker dev script
+  copy:
+    src: "{{ item }}"
+    dest: "/root/{{ item }}"
+  with_items:
+    - distribute_binary.sh
+    - start-docker-d.sh
+    - switch-remote-upstream.sh

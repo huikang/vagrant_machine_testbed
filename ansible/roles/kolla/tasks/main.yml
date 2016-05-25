@@ -1,0 +1,35 @@
+---
+# file: roles/kolla/tasks/osprepare.yml
+
+# Demo installation for Kolla All-In-One
+
+- name: Download kolla source code
+  git:
+    repo: https://github.com/openstack/kolla.git
+    dest: /root/kolla
+
+- name: Install pip
+  shell: easy_install pip
+  when: ansible_distribution_release == "vivid"
+
+- name: Install required pip
+  pip:
+    requirements: /root/kolla/requirements.txt
+
+- name: Install openstack client
+  pip:
+    name:  python-openstackclient
+    state: latest
+
+- name: Disable and stop libvirtd
+  service:
+    name: libvirtd
+    state: stopped
+    enabled: no
+  ignore_errors: yes
+
+
+
+# - include: all-in-one.yml
+
+- debug: msg="Now you can manually build kolla images"

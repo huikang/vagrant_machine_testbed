@@ -1,0 +1,117 @@
+#controller-01  ansible_ssh_host=192.168.13.11
+
+#network-01     ansible_ssh_host=192.168.13.12
+
+#compute-01     ansible_ssh_host=192.168.13.13
+#compute-02     ansible_ssh_host=192.168.13.14
+#compute-03     ansible_ssh_host=192.168.13.15
+
+[control]
+#controller-01
+
+[network]
+#network-01
+
+[compute]
+# compute-01
+# compute-02
+#compute-03
+
+[kubernetes]
+#k1.sl.cloud9.ibm.com
+#k2.sl.cloud9.ibm.com
+#k3.sl.cloud9.ibm.com
+
+#192.168.11.107
+#192.168.11.108
+
+[kolla]
+#192.168.4.101
+#192.168.4.102
+#192.168.4.103
+#192.168.4.104
+#192.168.4.105
+#192.168.4.106
+
+#10.10.10.74
+
+#192.168.23.101
+#192.168.23.102
+#192.168.23.103
+#192.168.23.104
+#192.168.23.105
+#192.168.23.106
+#192.168.23.107
+#192.168.23.108
+
+# These nodes are for upstream build
+#192.168.27.101
+#192.168.27.102
+#192.168.27.103
+#192.168.27.104
+#192.168.27.105
+#192.168.27.106
+#192.168.27.107
+#192.168.27.108
+
+# kolla xcat nodes
+#9.47.161.136
+#9.47.161.137
+#9.47.161.138
+#9.47.161.81
+
+# kolla xcat RDU37 nodes table 2
+#9.47.161.25
+#9.47.161.10
+#9.47.161.13
+#9.47.161.14
+#9.47.161.57
+
+# kolla k12c0ga nodes
+#9.2.212.53  ansible_ssh_user=openstack
+#9.2.212.54  ansible_ssh_user=openstack
+#9.2.212.55  ansible_ssh_user=openstack
+#9.2.212.56  ansible_ssh_user=openstack
+#9.2.211.193  ansible_ssh_user=openstack
+#9.2.209.149  ansible_ssh_user=openstack
+
+# kolla xcat RDU39
+#9.47.161.2
+#9.47.161.9
+#9.47.161.24
+#9.47.161.53
+#9.47.161.67
+#9.47.161.76
+
+[docker-dev]
+#192.168.1.101
+#192.168.1.102
+#192.168.1.103
+#192.168.15.101
+#192.168.15.102
+#192.168.15.103
+
+[hyper]
+#192.168.29.101
+#192.168.29.102
+#9.2.212.53
+#9.2.209.149
+
+[osv]
+#192.168.31.101
+
+#9.47.161.67
+
+[ovn]
+192.168.33.101
+192.168.33.102
+#192.168.33.103
+#192.168.33.104
+#192.168.33.105
+
+[heroku-dev]
+#192.168.25.101
+
+[softlayer]
+#158.85.113.73  machineType=baremetal ansible_ssh_pass=passw0rd
+#158.85.113.72  machineType=baremetal ansible_ssh_pass=passw0rd

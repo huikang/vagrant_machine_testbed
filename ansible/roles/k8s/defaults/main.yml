@@ -1,0 +1,3 @@
+---
+# Valid options are [ release, master ]
+install_type: "release"

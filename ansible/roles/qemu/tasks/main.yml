@@ -1,0 +1,31 @@
+---
+- name: Install packages to compile Qemu 2.0
+  yum: name={{ item }} state=latest
+  with_items:
+    - yum-utils
+
+- name: Add repo for centos 7
+  command: "yum-config-manager --nogpgcheck --add-repo http://dev.centos.org/c7-extras/"
+  when: ansible_distribution == "CentOS"
+
+- name: Install packages to compile Qemu 2.0
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+    - glib2-devel
+    - libcap-devel
+    - libattr-devel
+    - device-mapper-devel
+    - sqlite-devel
+    - zlib-devel
+  when: ansible_distribution == "CentOS"
+
+- name: Download Qemu stable source code
+  get_url:
+    url: http://wiki.qemu-project.org/download/qemu-2.5.0.tar.bz2
+    dest: /root/qemu-2.5.0.tar.bz2
+  register: exists
+
+- name: Unzip Qemu package
+  command: tar xvjf /root/qemu-2.5.0.tar.bz2
+  when: exists.changed

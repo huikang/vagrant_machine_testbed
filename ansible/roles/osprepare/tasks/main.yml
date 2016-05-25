@@ -1,0 +1,156 @@
+---
+# file: roles/compute/tasks/osprepare.yml
+
+- debug: msg="OS familer is {{ ansible_os_family }}"
+- debug: msg="OS distribution is {{ ansible_distribution }}"
+- debug: msg="OS version is {{ ansible_distribution_release }}"
+
+#####################################
+# Update repository
+#####################################
+- name: Update yum cache
+  yum: name=* state=latest
+  when: ansible_distribution == "CentOS"
+
+- name: Update apt cache
+  apt: update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+  ignore_errors: yes
+
+###########################################
+# Install necessary packages for centos-7
+###########################################
+
+- name: Install yum packages
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+    - screen
+    - emacs
+    - git
+    - wget
+    - libselinux-python
+    - python-pip
+    - gcc
+    - libffi-devel
+    - libxml2-devel
+    - libxslt-devel
+    - MySQL-python
+    - openssl
+    - openssl-devel
+    - python-devel
+    - net-tools
+  when: ansible_distribution == "CentOS"
+
+
+###########################################
+# Install necessary packages for ubuntu 14
+###########################################
+- name: "Install debian packages"
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - screen
+    - emacs
+    - git
+    - wget
+    - curl
+    - python-selinux
+    - build-essential
+    - asciidoc
+    - protobuf-c-compiler
+    - python-protobuf
+    - libprotobuf-c0-dev
+    - libbsd-dev
+    - protobuf-compiler
+    - python-ipaddr
+    - protobuf-compiler
+    - libprotobuf-dev
+    - libprotoc-dev
+    - libaio-dev
+    - pkg-config
+    - python-pip
+    - python-mysqldb
+    - python-dev
+    - libseccomp-dev
+  when: ansible_distribution == "Ubuntu"
+
+- debug: msg="this is bare metal"
+  when: machineType == "baremetal"
+
+- name: "Install Vagrant"
+  get_url:
+    url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb
+    dest: /tmp/vagrant_1.7.4_x86_64.deb
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+- name: Install vagrant
+  # apt: deb=/tmp/vagrant_1.7.4_x86_64.deb update_cache=no
+  command: dpkg -i /tmp/vagrant_1.7.4_x86_64.deb
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+- name: "Install bare metal packages"
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - ubuntu-desktop
+    - tightvncserver
+    - xfce4
+    - xfce4-goodies
+    - qemu-system
+    - qemu-kvm
+    - libvirt-bin
+    - ubuntu-vm-builder
+    - bridge-utils
+    - virt-manager
+    - libvirt-dev
+    - ruby-dev
+    - libxslt-dev
+    - libxml2-dev
+    - libvirt-dev
+    - zlib1g-dev
+    - nfs-kernel-server
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+- name: Install vncserver
+  apt: pkg=vnc4server
+  when: ansible_distribution_release == "vivid"
+
+- name: "Install vagrant libvirt packages"
+  gem: name=ruby-libvirt state=latest
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+- name: "Install vagrant libvirt plugin"
+  command:  vagrant plugin install vagrant-libvirt
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+- name: "Install vagrant hostmanager plugin"
+  command:  vagrant plugin install vagrant-hostmanager
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+
+- name: "Configure vncserver"
+  copy: src=etc/init.d/vncserver dest=/etc/init.d/vncserver
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+- name: "Create VNC start up directory"
+  file: path=/root/.vnc state=directory
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+- name: "Configure vncserver"
+  copy: src=xstartup dest=/root/.vnc/xstartup
+  when: ansible_distribution == "Ubuntu" and machineType == "baremetal"
+
+#####################################
+# Disable firewall
+#####################################
+
+- name: Disable Selinux
+  selinux: state=disabled
+  when: ansible_distribution == "CentOS"
+
+- name: Disable firewall
+  service: name=iptables state=stopped
+  when: ansible_distribution == "CentOS"
+
+- name: Disable ufw
+  service: name=ufw state=stopped
+  when: ansible_distribution == "Ubuntu"

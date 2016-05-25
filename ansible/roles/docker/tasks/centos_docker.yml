@@ -1,0 +1,102 @@
+---
+# file: roles/customize/tasks/main.yml
+#
+
+#####################################
+# Install Docker daemon
+#####################################
+- name: Install epel
+  yum: name={{ item }}  state=latest
+  with_items:
+     - epel-release
+  when: ansible_distribution == "CentOS"
+
+- name: Download docker install script
+  copy: src=docker-install.sh  dest=/tmp/docker_install.sh mode=0755
+
+- name: Download aufs kernel module
+  shell: 'apt-get install -y linux-image-extra-$(uname -r)'
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install aufs kernel module
+  modprobe: name=aufs state=present
+  when: ansible_distribution == "Ubuntu"
+
+#- name: Install docker binary
+#  shell: /tmp/docker_install.sh
+  #when: ansible_distribution == "Ubuntu"
+
+#####################################
+# Install Docker compose
+#####################################
+
+#- name: Install docker compose with pip
+#  pip: name=docker-compose version=1.3.0
+
+#####################################
+# Configure and start Docker daemon
+#####################################
+
+- name: Copy docker config file
+  template: src=centos/docker.j2 dest=/etc/sysconfig/docker
+            mode=0755
+  notify: restart docker
+  when: ansible_distribution == "CentOS"
+
+- name: Copy docker config file
+  template: src=ubuntu/docker.j2 dest=/etc/default/docker
+            mode=0755
+  notify: restart docker
+  when: ansible_distribution == "Ubuntu"
+
+- name: Copy docker daemon config file
+  template: src=centos/docker.service.j2 dest=/lib/systemd/system/docker.service
+            mode=0755
+  notify: restart docker
+  when: ansible_distribution == "CentOS" or ansible_distribution_release == "vivid"
+
+- name: Copy docker daemon config file
+  shell: systemctl daemon-reload
+  when: ansible_distribution == "CentOS" or ansible_distribution_release == "vivid"
+
+#####################################
+# Install Pin to docker 1.8.2
+#####################################
+- name: Stop docker daemon
+  service: name=docker state=stopped
+  # when: ansible_distribution == "CentOS"
+
+#- name: Ping to docker 1.8.2
+#  get_url: url=https://get.docker.com/builds/Linux/x86_64/docker-1.8.2 dest=/root/docker validate_certs=no mode=0755
+#  when: ansible_distribution == "CentOS"
+- name: Install httplib2
+  pip: name=httplib2
+
+- name: Pin to docker 1.8.2
+  shell: wget https://get.docker.com/builds/Linux/x86_64/docker-1.8.2 -O /root/docker
+
+- name: Overwrite stable
+  shell: mv -f /root/docker /usr/bin/docker; chmod +x /usr/bin/docker
+
+#- name: Ping to docker 1.8.2
+#  uri: url=https://get.docker.com/builds/Linux/x86_64/docker-1.8.2 dest=/root/docker method=GET return_content=yes
+#  when: ansible_distribution == "CentOS"
+
+- name: Start docker daemon
+  service: name=docker state=restarted
+  # when: ansible_distribution == "CentOS"
+
+#####################################
+# Install docker-py
+#####################################
+
+- name: Install docker-py
+  pip: name=docker-py version=0.6.0
+
+- name: Install ansible
+  #pip: name=ansible version=1.9.3
+  pip: name=ansible state=latest
+# - name: Install pip shade
+#  pip: name=shade
+
+#-c

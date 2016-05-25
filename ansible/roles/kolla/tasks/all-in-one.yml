@@ -1,0 +1,9 @@
+---
+# file:
+
+- name: Copy the kolla configuration file
+  template:
+    src: globals.yml
+    dest: /root/globals.yml
+
+# build kolla images

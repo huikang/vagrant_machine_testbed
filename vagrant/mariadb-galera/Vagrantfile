@@ -1,0 +1,8 @@
+require_relative '../shared.rb'
+
+Vagrant.configure("2") do |config|
+  create_vm(config, name: 'openstack-db', id: 1)
+  create_vm(config, name: 'openstack-db', id: 2)
+  create_vm(config, name: 'keystone-db', id: 3)
+  create_vm(config, name: 'keystone-db', id: 4)
+end

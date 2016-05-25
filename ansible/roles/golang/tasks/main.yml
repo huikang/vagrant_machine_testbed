@@ -1,0 +1,21 @@
+---
+
+# Setup golang development environment
+
+- name: Download GO binary
+  get_url: url=https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz dest=/root/go1.6.2.linux-amd64.tar.gz mode=0755 validate_certs=False
+
+- name: Install GO
+  command: tar -C /usr/local -xzf /root/go1.6.2.linux-amd64.tar.gz
+
+- name: Add go bin to the PATH
+  shell: echo 'export PATH="$PATH:/usr/local/go/bin"' >> /root/.bashrc
+
+- name: Create GOPATH
+  shell: echo 'export GOPATH="/go"' >> /root/.bashrc
+
+- name: Ensure GOPATH directory exits
+  file:
+    path: "/go"
+    state: "directory"
+    recurse: yes

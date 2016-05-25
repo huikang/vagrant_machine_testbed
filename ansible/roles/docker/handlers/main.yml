@@ -1,0 +1,10 @@
+---
+# file: roles/customize/handlers/main.yml
+#
+
+- name: start docker daemon
+  service: name=docker state=started
+
+- debug: msg="Restart docker daemon"
+- name: restart docker
+  service: name=docker state=restarted

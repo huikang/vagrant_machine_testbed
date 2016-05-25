@@ -1,0 +1,8 @@
+---
+- include: centos_docker.yml
+  when:
+    - ansible_distribution == "CentOS"
+
+- include: ubuntu_docker.yml
+  when:
+    - ansible_distribution == "Ubuntu"

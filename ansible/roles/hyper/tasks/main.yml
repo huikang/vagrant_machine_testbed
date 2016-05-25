@@ -1,0 +1,73 @@
+---
+# yum-config-manager --add-repo http://dev.centos.org/c7-extras/
+- name: Add repo for centos 7
+  command: "yum-config-manager --nogpgcheck --add-repo http://dev.centos.org/c7-extras/"
+  when: ansible_distribution == "CentOS"
+
+- name: Install packages to compile Qemu 2.0 and hyper
+  yum: name={{ item }} state=latest
+  with_items:
+    - epel-release
+    - glib2-devel
+    - libcap-devel
+    - libattr-devel
+    - device-mapper-devel
+    - sqlite-devel
+  when: ansible_distribution == "CentOS"
+
+- name: Install packages to compile Qemu 2.0 and hyper
+  apt: name={{ item }} state=latest force=yes
+  with_items:
+    - automake
+    - sqlite3
+    - libdevmapper-dev
+    - libsqlite3-dev
+    - libglib2.0-dev
+    - libpcap-dev
+    - libattr1-dev
+    - build-essential
+    - gcc
+    - pkg-config
+    - libglib2.0-dev
+    - libsdl1.2-dev
+    - libaio-dev
+    - libcap-dev
+    - libattr1-dev
+    - libpixman-1-dev
+    - bison
+    - flex
+  when: ansible_distribution == "Ubuntu"
+
+#- name: Install dependenceis for Qemu
+#  apt: name={{ item }} state=build-dep
+#  with_items:
+#    - qemu
+#  when: ansible_distribution == "Ubuntu"
+
+# for ubuntu
+# apt-get install build-essential gcc pkg-config glib-2.0 libglib2.0-dev
+# libsdl1.2-dev libaio-dev libcap-dev libattr1-dev libpixman-1-dev
+# apt-get build-dep qemu
+#
+
+- name: Download Qemu stable source code
+  get_url:
+    url: http://wiki.qemu-project.org/download/qemu-2.4.1.tar.bz2
+    dest: /root/qemu-2.4.1.tar.bz2
+
+- name: Unzip Qemu package
+  command: tar xvjf /root/qemu-2.4.1.tar.bz2
+
+#- name: Configure build for Qemu
+#  command: cd /root/qemu-2.4.1; ./configure --enable-virtfs
+
+# for development, need to install systemd-container
+#     http://dev.centos.org/c7-extras/systemd-container/20150409191440/
+
+
+# https://s3.amazonaws.com/hyper-install/hyper-0.4-1.el7.centos.x86_64.rpm
+
+# Download hyper rpm
+# wget https://s3.amazonaws.com/hyper-install/hyper-0.4-1.el7.centos.src.rpm
+#   rpm -Uvh
+#   rpmbuild -bb hyper.spec

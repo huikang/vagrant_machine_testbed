@@ -1,0 +1,37 @@
+---
+
+- debug: msg="Install Heroku go env"
+- name: Download GO binary
+  get_url: url=https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz dest=/root/go1.5.1.linux-amd64.tar.gz mode=0755
+
+- name: Install GO
+  command: tar -C /usr/local -xzf /root/go1.5.1.linux-amd64.tar.gz
+
+# export PATH=$PATH:/usr/local/go/bin
+- name: Add go bin to the PATH
+  shell: echo 'export PATH="$PATH:/usr/local/go/bin"' >> /root/.bashrc
+
+# mkdir /root/workspace
+- name: Create a workspace for Go
+  file: path=/root/workspace state=directory
+
+# export GOPATH=$HOME/work
+- name: Add workspace to GOPATH
+  shell: echo 'export GOPATH="/root/workspace"' >> /root/.bashrc
+
+# wget -qO- https://toolbelt.heroku.com/install.sh | sh
+#- name: Install heroku
+- name: Download GO binary
+  get_url: url=https://toolbelt.heroku.com/install.sh dest=/root/heroku.sh mode=0755
+
+- name: Install heroku
+  shell: /root/heroku.sh
+
+#  echo 'PATH="/usr/local/heroku/bin:$PATH"' >> ~/.profile
+- name: Add heroku to PATH
+  shell: echo 'PATH="/usr/local/heroku/bin:$PATH"' >> /root/.bashrc
+
+# Install ruby
+- name: Install ruby
+  yum: name=ruby state=latest
+  when: ansible_distribution == "CentOS"

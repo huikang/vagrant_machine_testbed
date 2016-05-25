@@ -1,0 +1,48 @@
+{
+  "name": "sl-ostack-centos-7.0",
+  "description": "This box contains softlayer openstack base image.",
+  "versions": [
+    {
+      "version": "0.1.0",
+      "providers": [{
+        "name": "virtualbox",
+        "url": "https://dal05.objectstorage.softlayer.net/v1/AUTH_0d9dffd4-303d-465e-b12a-da4cfad071c9/openstack-images/sl-ostack-centos-7.0.box",
+        "checksum_type": "sha1",
+        "checksum": "56bea4ce63a1901828da2f9310dd831d51211ef3"
+      }]
+    },
+    {
+      "version": "0.2.0",
+      "providers": [{
+        "name": "virtualbox",
+        "url": "https://dal05.objectstorage.softlayer.net/v1/AUTH_0d9dffd4-303d-465e-b12a-da4cfad071c9/openstack-images/sl-ostack-centos-7.0-0.2.0.box",
+        "checksum_type": "sha1",
+        "checksum": "8c9143e6d3ec9b6bddbe141b8f01b8467e91ba62"
+      }]
+    },
+    {
+      "version": "0.3.0",
+      "providers": [{
+        "name": "virtualbox",
+        "url": "https://dal05.objectstorage.softlayer.net/v1/AUTH_0d9dffd4-303d-465e-b12a-da4cfad071c9/openstack-images/sl-ostack-centos-7.0-0.3.0.box",
+        "checksum_type": "sha1",
+        "checksum": "dff3de52a168541debe7d1d37f656818900d20c0"
+      }]
+    },
+    {
+      "version": "0.4.0",
+      "providers": [{
+        "name": "libvirt",
+        "url": "https://dal05.objectstorage.softlayer.net/v1/AUTH_0d9dffd4-303d-465e-b12a-da4cfad071c9/openstack-images/sl-ostack-centos-7.0-0.4.0.qcow2.box",
+        "checksum_type": "sha1",
+        "checksum": "61fe95346576abc548aab8181f1038db6a8152ef"
+      },
+      {
+        "name": "virtualbox",
+        "url": "https://dal05.objectstorage.softlayer.net/v1/AUTH_0d9dffd4-303d-465e-b12a-da4cfad071c9/openstack-images/sl-ostack-centos-7.0-0.4.0.vbox.box",
+        "checksum_type": "sha1",
+        "checksum": "c7894559547dd21db0c2ae9eb0ad4bd9b039e675"
+      }]
+    }
+  ]
+}

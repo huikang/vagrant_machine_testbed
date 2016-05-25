@@ -1,0 +1,97 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos-{{user `cent_version`}}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 40960,
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "RedHat_64",
+      "hard_drive_interface": "sata",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_sha`}}",
+      "iso_checksum_type": "sha256",
+      "iso_url": "{{user `iso_url`}}",
+      "output_directory": "packer-centos-{{user `cent_version`}}-x86_64-virtualbox",
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "packer-centos-{{user `cent_version`}}-x86_64",
+      "headless": true
+    }, {
+        "boot_command": [
+          "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos-{{user `cent_version`}}/ks.cfg<enter><wait>"
+        ],
+        "boot_wait": "10s",
+        "disk_size": "40960",
+        "disk_interface": "virtio",
+        "http_directory": "http",
+        "iso_checksum": "{{user `iso_sha`}}",
+        "iso_checksum_type": "sha256",
+        "iso_url": "{{user `iso_url`}}",
+        "output_directory": "packer-centos-{{user `cent_version`}}-x86_64-qemu",
+        "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_username": "vagrant",
+        "ssh_wait_timeout": "10000s",
+        "type": "qemu",
+        "net_device": "virtio-net",
+        "accelerator": "kvm",
+        "format": "qcow2",
+        "headless": true,
+        "vm_name": "packer-centos-{{user `cent_version`}}-x86_64-qemu",
+        "qemuargs": [
+            ["-m", "2G"],
+            ["-smp", "2"]
+        ]
+    }
+  ],
+  "post-processors": [
+    {
+      "output": "sl-ostack-centos-{{user `cent_version`}}.box",
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "scripts": [
+        "scripts/centos/fix-slow-dns.sh",
+        "scripts/common/sshd.sh",
+        "scripts/common/vagrant.sh",
+        "scripts/common/vmtools.sh",
+        "scripts/centos/stacktools.sh",
+        "scripts/centos/cleanup.sh",
+        "scripts/common/minimize.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "mirror": "http://mirrors.kernel.org/centos",
+    "cent_version": "7.0",
+    "iso_url": "https://dal05.objectstorage.softlayer.net/v1/AUTH_0d9dffd4-303d-465e-b12a-da4cfad071c9/openstack-images/CentOS-7.0-1406-x86_64-DVD.iso",
+    "iso_sha": "ee505335bcd4943ffc7e6e6e55e5aaa8da09710b6ceecda82a5619342f1d24d9"
+  }
+}
+

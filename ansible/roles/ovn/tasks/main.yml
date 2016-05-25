@@ -1,0 +1,5 @@
+---
+- name: Download ovs source tree
+  git:
+    repo: https://github.com/huikang/ovs.git
+    dest: /root/ovs
