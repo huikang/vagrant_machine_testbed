@@ -1,0 +1,25 @@
+---
+- name: Install dependencies
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - libpopt-dev
+    - libiberty-dev
+    - binutils-dev
+
+- name: Create oprofile group
+  group:
+    name: oprofile
+    state: present
+
+- name: Create oprofile user
+  user:
+    name: oprofile
+    group: oprofile
+    state: present
+
+- name: Download oprofile source tree
+  get_url:
+    url: http://prdownloads.sourceforge.net/oprofile/oprofile-1.1.0.tar.gz
+    dest: /tmp/oprofile-1.1.0.tar.gz

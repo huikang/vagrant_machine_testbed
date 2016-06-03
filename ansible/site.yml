@@ -3,12 +3,12 @@
 
 # Available roles: kolla
 
-- name: Prepare all nodes
-  hosts: all
-  roles:
-    - osprepare
-  tags:
-    - phase1
+#- name: Prepare all nodes
+#  hosts: all
+#  roles:
+#    - osprepare
+#  tags:
+#    - phase1
 
 - name: Install docker
   hosts: all
@@ -82,3 +82,10 @@
     - k8s
   tags:
     - k8s
+
+- name: Oprofile
+  hosts: oprofile
+  roles:
+    - oprofile
+  tags:
+    - oprofile
