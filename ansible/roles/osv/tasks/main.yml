@@ -1,6 +1,4 @@
 ---
-- debug: msg = "osv role main task file"
-
 - name: Download Capstan installation script
   get_url:
     url: https://raw.githubusercontent.com/cloudius-systems/capstan/master/scripts/download

@@ -9,6 +9,13 @@
     - libtool
   when: ansible_distribution == "CentOS"
 
+- name: Install ubuntu packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - python-pip
+    - emacs24
+  when: ansible_distribution == "Ubuntu"
+
 - name: Install packages
   pip:
     name: six
