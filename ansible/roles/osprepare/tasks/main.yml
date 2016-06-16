@@ -1,6 +1,4 @@
 ---
-# file: roles/compute/tasks/osprepare.yml
-
 - debug: msg="OS familer is {{ ansible_os_family }}"
 - debug: msg="OS distribution is {{ ansible_distribution }}"
 - debug: msg="OS version is {{ ansible_distribution_release }}"

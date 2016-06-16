@@ -3,3 +3,14 @@
   git:
     repo: https://github.com/huikang/ovs.git
     dest: /root/ovs
+
+- name: "Install packages to compile ovs"
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - git
+    - autoconf
+    - make
+    - automake
+    - libtool
+    - uuid-runtime
+  when: ansible_distribution == "Ubuntu"

@@ -1,4 +1,8 @@
 ---
+- debug: msg="OS familer is {{ ansible_os_family }}"
+- debug: msg="OS distribution is {{ ansible_distribution }}"
+- debug: msg="OS version is {{ ansible_distribution_release }}"
+
 - include: centos_docker.yml
   when:
     - ansible_distribution == "CentOS"
