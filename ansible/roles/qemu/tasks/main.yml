@@ -3,12 +3,13 @@
   yum: name={{ item }} state=latest
   with_items:
     - yum-utils
+  when: ansible_distribution == "CentOS"
 
 - name: Add repo for centos 7
   command: "yum-config-manager --nogpgcheck --add-repo http://dev.centos.org/c7-extras/"
   when: ansible_distribution == "CentOS"
 
-- name: Install packages to compile Qemu 2.0
+- name: Install yum packages to compile Qemu 2.0
   yum: name={{ item }} state=latest
   with_items:
     - epel-release
@@ -20,6 +21,14 @@
     - zlib-devel
   when: ansible_distribution == "CentOS"
 
+- name: Install debian packages to compile Qemu 2.0
+  apt: name={{ item }} state=latest
+  with_items:
+    - pkg-config
+    - zlib1g-dev
+    - libgtk2.0-dev
+  when: ansible_distribution == "Ubuntu"
+
 - name: Download Qemu stable source code
   get_url:
     url: http://wiki.qemu-project.org/download/qemu-2.5.0.tar.bz2
@@ -29,3 +38,5 @@
 - name: Unzip Qemu package
   command: tar xvjf /root/qemu-2.5.0.tar.bz2
   when: exists.changed
+
+# To install qemu, ./configure; make; make install

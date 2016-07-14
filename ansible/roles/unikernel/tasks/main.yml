@@ -1,0 +1,13 @@
+---
+- name: install vnc-server
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - xfce4
+    - xfce4-goodies
+    - tightvncserver
+
+- name: download rumprun buildrump tool chain
+  git:
+    repo: http://repo.rumpkernel.org/buildrump.sh
+    dest: /root/buildrump.sh
+  register: exists
