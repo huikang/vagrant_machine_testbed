@@ -1,0 +1,14 @@
+---
+- name: install vnc-server
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - xfce4
+    - xfce4-goodies
+    - tightvncserver
+
+- name: create sudo user stack
+  user:
+    name: stack
+    state: present
+    groups: "admin,sudo"
+    password: stack

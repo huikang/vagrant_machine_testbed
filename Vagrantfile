@@ -86,6 +86,7 @@ Vagrant.configure("2") do |config|
   create_vm(config, name: "ovn-host", id: 4, memory: 4096, cpus: 2, ostype: "centos/7", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "ovn-host", id: 5, memory: 4096, cpus: 2, ostype: "centos/7", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "ovn-host", id: 6, memory: 4096, cpus: 2, ostype: "centos/7", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "ovn-host", id: 7, memory: 4096, cpus: 2, ostype: "kja/netbsd-7-amd64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
 
   # VMs for Go program
@@ -102,6 +103,12 @@ Vagrant.configure("2") do |config|
   pub_ip_prefix  = "192.168.39"
   priv_ip_prefix = "192.168.40"
   create_vm(config, name: "unikernel-dev", id: 1, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+
+  # VMs for devstack
+  pub_ip_prefix  = "192.168.41"
+  priv_ip_prefix = "192.168.42"
+  create_vm(config, name: "devstack", id: 1, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "devstack", id: 2, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
   # Examples:
   #     create_vm(config, name: "docker-test-1", id: 2, memory: 4096, cpus: 2, ostype: "sl-ostack-centos-7.0")

@@ -97,3 +97,10 @@
     - qemu
   tags:
     - unikernel
+
+- name: devstack
+  hosts: devstack
+  roles:
+    - devstack
+  tags:
+    - devstack
