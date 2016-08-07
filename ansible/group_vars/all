@@ -1,7 +1,7 @@
 ---
 # file: group_vars/all
 
-docker_image_repo_ip:   9.12.248.205
+docker_image_repo_ip:   9.2.212.62
 docker_image_repo_port: 5000
 
 docker_daemon_storage: aufs

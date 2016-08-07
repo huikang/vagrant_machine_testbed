@@ -7,6 +7,7 @@
     - autoconf
     - automake
     - libtool
+    - python-dev
   when: ansible_distribution == "CentOS"
 
 - name: Install ubuntu packages
@@ -14,6 +15,12 @@
   with_items:
     - python-pip
     - emacs24
+    - python-dev
+    - libpq-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - libldap2-dev
+    - libsasl2-dev
   when: ansible_distribution == "Ubuntu"
 
 - name: Install packages

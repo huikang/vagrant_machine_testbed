@@ -1,0 +1,21 @@
+---
+- name: Check OS uses upstart or systemd
+  shell: stat /proc/1/exe
+  register: result
+  when: ansible_distribution == "Ubuntu"
+
+- name: Copy docker init file
+  template:
+    src: docker-upstart.conf.j2
+    dest: /etc/default/docker
+  register: cfg_exists
+  when:
+    - "'init' in result.stdout"
+    - "ansible_distribution == 'Ubuntu'"
+
+- name: Restart docker daemon
+  service: name=docker state=restarted
+  when:
+    - cfg_exists.changed
+    - "'init' in result.stdout"
+    - "ansible_distribution == 'Ubuntu'"

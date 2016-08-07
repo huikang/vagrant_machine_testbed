@@ -12,6 +12,16 @@
   shell: easy_install pip
   when: ansible_distribution_release == "vivid"
 
+- name: Install ansible
+  pip:
+    name: "{{ item }}"
+    state: latest
+  retries: 5
+  with_items:
+    - markupsafe
+    - ansible
+    - tox
+
 - name: Install required pip
   pip:
     requirements: /root/kolla/requirements.txt
@@ -28,7 +38,7 @@
     enabled: no
   ignore_errors: yes
 
-
+- include: config-docker.yml
 
 # - include: all-in-one.yml
 

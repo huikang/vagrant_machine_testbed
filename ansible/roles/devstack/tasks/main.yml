@@ -12,3 +12,6 @@
     state: present
     groups: "admin,sudo"
     password: stack
+
+# To proceed, download devstack as the stack user
+#      install as sudo ./stack.sh
