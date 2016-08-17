@@ -21,6 +21,9 @@
     - libxslt1-dev
     - libldap2-dev
     - libsasl2-dev
+    - dlocate
+    - bison
+    - flex
   when: ansible_distribution == "Ubuntu"
 
 - name: Install packages

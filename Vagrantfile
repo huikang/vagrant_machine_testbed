@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
 
   create_vm(config, name: "kolla-upstream-ubuntu", id: 5, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "kolla-upstream-ubuntu", id: 6, memory: 4096, cpus: 4, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
-  create_vm(config, name: "kolla-upstream-ubuntu", id: 7, memory: 4096, cpus: 4, ostype: "ubuntu/vivid64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "kolla-upstream-ubuntu", id: 7, memory: 4096, cpus: 4, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "kolla-upstream-ubuntu", id: 8, memory: 4096, cpus: 4, ostype: "ubuntu/vivid64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
   # VMs for pcs testbed, pacemaker
