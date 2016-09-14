@@ -14,3 +14,15 @@
     - libtool
     - uuid-runtime
   when: ansible_distribution == "Ubuntu"
+
+- name: Install ansible
+  pip:
+    name: "{{ item }}"
+    state: latest
+  retries: 5
+  with_items:
+    - markupsafe
+    - ansible
+    - tox
+    - netaddr
+    - docker-py
