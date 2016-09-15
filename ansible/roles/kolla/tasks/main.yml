@@ -31,6 +31,9 @@
     name:  python-openstackclient
     state: latest
 
+- name: Set the MountFlags option
+  command: mount --make-shared /run
+
 - name: Disable and stop libvirtd
   service:
     name: libvirtd
