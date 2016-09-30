@@ -44,8 +44,8 @@ Vagrant.configure("2") do |config|
   create_vm(config, name: "kolla-upstream", id: 4, memory: 4096, cpus: 4, ostype: "sl-ostack-centos-7.0", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "kolla-upstream", id: 5, memory: 4096, cpus: 4, ostype: "sl-ostack-centos-7.0", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
-  create_vm(config, name: "kolla-upstream-ubuntu", id: 5, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
-  create_vm(config, name: "kolla-upstream-ubuntu", id: 6, memory: 4096, cpus: 4, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "kolla-upstream-ubuntu", id: 5, memory: 8192, cpus: 4, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "kolla-upstream-ubuntu", id: 6, memory: 8192, cpus: 4, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "kolla-upstream-ubuntu", id: 7, memory: 4096, cpus: 4, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "kolla-upstream-ubuntu", id: 8, memory: 4096, cpus: 4, ostype: "ubuntu/vivid64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
@@ -83,9 +83,9 @@ Vagrant.configure("2") do |config|
   create_vm(config, name: "ovn-host", id: 1, memory: 4096, cpus: 2, ostype: "centos/7", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "ovn-host", id: 2, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "ovn-host", id: 3, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
-  create_vm(config, name: "ovn-host", id: 4, memory: 4096, cpus: 2, ostype: "centos/7", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
-  create_vm(config, name: "ovn-host", id: 5, memory: 4096, cpus: 2, ostype: "centos/7", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
-  create_vm(config, name: "ovn-host", id: 6, memory: 4096, cpus: 2, ostype: "centos/7", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "ovn-host", id: 4, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "ovn-host", id: 5, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "ovn-host", id: 6, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "ovn-host", id: 7, memory: 4096, cpus: 2, ostype: "kja/netbsd-7-amd64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
 
