@@ -26,3 +26,9 @@
     - tox
     - netaddr
     - docker-py
+
+#
+# to build ovs datapath
+# ./configure  --with-linux=/lib/modules/3.13.0-95-generic/build/
+# make; make modules_install
+#
