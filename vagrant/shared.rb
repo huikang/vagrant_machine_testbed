@@ -4,9 +4,12 @@ require 'rbconfig'
 
 def create_vm(config, options = {})
   dirname = File.dirname(__FILE__)
-  config.vm.synced_folder "#{dirname}/..", '/root/vagrant', create:"True", type: 'nfs'
-  config.vm.synced_folder "/root/development", '/root/development', create:"True", type: 'nfs'
-  config.ssh.password = 'vagrant'
+  #config.vm.synced_folder "#{dirname}/..", '/root/vagrant', create:"True", type: 'nfs'
+  #config.vm.synced_folder "/root/development", '/root/development', create:"True", type: 'nfs'
+  osbox = options.fetch(:ostype, "ostype")
+  #if osbox != "ubuntu/xenial64"
+  #  config.ssh.password = 'vagrant'
+  #end
 
   name = options.fetch(:name, "node")
   id = options.fetch(:id, 1)
@@ -17,7 +20,6 @@ def create_vm(config, options = {})
   cpus = options.fetch(:cpus, 1)
   private_net = options.fetch(:private_net, true)
 
-  osbox = options.fetch(:ostype, "ostype")
   config.vm.define vm_name do |config|
     config.vm.box = osbox
     if osbox == "sl-ostack-centos-7.0"

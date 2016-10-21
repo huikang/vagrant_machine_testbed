@@ -110,6 +110,15 @@ Vagrant.configure("2") do |config|
   create_vm(config, name: "devstack", id: 1, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
   create_vm(config, name: "devstack", id: 2, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
+  # VMs for panda dev
+  pub_ip_prefix  = "192.168.43"
+  priv_ip_prefix = "192.168.44"
+  create_vm(config, name: "panda", id: 1, memory: 4096, cpus: 2, ostype: "ubuntu/xenial64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "panda", id: 2, memory: 8192, cpus: 4, ostype: "ubuntu/xenial64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "panda", id: 3, memory: 8192, cpus: 4, ostype: "ubuntu/xenial64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "panda", id: 4, memory: 8192, cpus: 4, ostype: "ubuntu/xenial64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "panda", id: 5, memory: 8192, cpus: 4, ostype: "ubuntu/xenial64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+
   # Examples:
   #     create_vm(config, name: "docker-test-1", id: 2, memory: 4096, cpus: 2, ostype: "sl-ostack-centos-7.0")
   #     create_vm(config, name: "docker-test-2", id: 3, memory: 2048, cpus: 2, ostype: "baremettle/ubuntu-14.04")

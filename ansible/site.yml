@@ -104,3 +104,12 @@
     - devstack
   tags:
     - devstack
+
+- name: panda
+  hosts: panda
+  roles:
+    - golang
+    - kolla
+    - panda
+  tags:
+    - panda

@@ -13,9 +13,24 @@
     - "'init' in result.stdout"
     - "ansible_distribution == 'Ubuntu'"
 
+- name: Copy docker systemd file
+  template:
+    src: docker-systemd.service.j2
+    dest: /etc/systemd/system/docker.service
+  register: cfg_exists
+  when:
+    - "'systemd' in result.stdout"
+    - "ansible_distribution == 'Ubuntu'"
+
+- name: reload systemd daemon
+  shell: systemctl daemon-reload
+  when:
+    - cfg_exists.changed
+    - "'systemd' in result.stdout"
+    - "ansible_distribution == 'Ubuntu'"
+
 - name: Restart docker daemon
   service: name=docker state=restarted
   when:
     - cfg_exists.changed
-    - "'init' in result.stdout"
     - "ansible_distribution == 'Ubuntu'"
