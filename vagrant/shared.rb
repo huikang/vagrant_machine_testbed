@@ -29,8 +29,8 @@ def create_vm(config, options = {})
 
     config.vm.hostname = vm_name
 
-    config.vm.provision "file", source: "#{dirname}/resolv.conf", destination: "/tmp/resolv.conf"
-    config.vm.provision "shell", inline: "sudo cp -f /tmp/resolv.conf /etc/resolv.conf"
+    #config.vm.provision "file", source: "#{dirname}/resolv.conf", destination: "/tmp/resolv.conf"
+    #config.vm.provision "shell", inline: "sudo cp -f /tmp/resolv.conf /etc/resolv.conf"
 
     #if vm_name == "controller-01"
     #  config.vm.provision "shell", inline: "sudo git -c http.sslVerify=false clone https://stash.softlayer.local/scm/devtools/openstack-ansible.git /root/openstack-ansible"
