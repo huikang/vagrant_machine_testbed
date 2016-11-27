@@ -24,9 +24,22 @@
     - dlocate
     - bison
     - flex
+    - git
   when: ansible_distribution == "Ubuntu"
 
 - name: Install packages
   pip:
     name: six
     state: latest
+
+- name: Set git username
+  git_config:
+    name: user.name
+    scope: global
+    value: "Hui Kang"
+
+- name: Set git email
+  git_config:
+    name: user.email
+    scope: global
+    value: "kangh@us.ibm.com"
