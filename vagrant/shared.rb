@@ -1,6 +1,7 @@
 require 'rbconfig'
 
-
+# Either libvirt or virtualbox
+PROVIDER ||= "libvirt"
 
 def create_vm(config, options = {})
   dirname = File.dirname(__FILE__)
@@ -76,25 +77,30 @@ def create_vm(config, options = {})
     chown -R vagrant: /home/vagrant/.ssh
     EOS
 
-    config.vm.provider :virtualbox do |vb|
-      vb.memory = memory
-      vb.cpus = cpus
-      vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-      add_secondary_disk(vm_name, vb, disk2) if disk2 > 0
+    case PROVIDER
+    when "virtualbox"
+      config.vm.provider :virtualbox do |vb|
+        vb.memory = memory
+        vb.cpus = cpus
+        vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+        vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+        add_secondary_disk(vm_name, vb, disk2) if disk2 > 0
 
-      if RbConfig::CONFIG['host_os'].downcase =~ /mingw|mswin/
-        vb.gui = true
+        if RbConfig::CONFIG['host_os'].downcase =~ /mingw|mswin/
+          vb.gui = true
+        end
+      end
+
+    when "libvirt"
+      config.vm.provider :libvirt do |libvirt|
+        libvirt.memory = memory
+        libvirt.cpus = cpus
+        libvirt.disk_bus = 'sata'
+
+        add_secondary_disk_libvirt(vm_name, libvirt, disk2) if disk2 > 0
       end
     end
 
-    config.vm.provider :libvirt do |libvirt|
-      libvirt.memory = memory
-      libvirt.cpus = cpus
-      libvirt.disk_bus = 'sata'
-
-      add_secondary_disk_libvirt(vm_name, libvirt, disk2) if disk2 > 0
-    end
   end
 end
 
