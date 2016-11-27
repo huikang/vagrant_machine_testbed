@@ -103,6 +103,7 @@ Vagrant.configure("2") do |config|
   pub_ip_prefix  = "192.168.39"
   priv_ip_prefix = "192.168.40"
   create_vm(config, name: "unikernel-dev", id: 1, memory: 4096, cpus: 2, ostype: "ubuntu/trusty64", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
+  create_vm(config, name: "unikernel-dev", id: 2, memory: 4096, cpus: 2, ostype: "decentlab/xenial64-minimal-libvirt", pub_ip_prefix: pub_ip_prefix, priv_ip_prefix: priv_ip_prefix)
 
   # VMs for devstack
   pub_ip_prefix  = "192.168.41"
