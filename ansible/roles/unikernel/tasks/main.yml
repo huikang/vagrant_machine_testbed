@@ -6,6 +6,12 @@
     - xfce4-goodies
     - tightvncserver
 
+- name: Install packages
+  apt: name={{ item }} state=latest
+  with_items:
+    - genisoimage
+    - makefs
+
 - name: download rumprun buildrump tool chain
   git:
     repo: http://repo.rumpkernel.org/buildrump.sh
