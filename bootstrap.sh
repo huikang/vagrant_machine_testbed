@@ -271,8 +271,8 @@ function configure_genesis_br {
 }
 
 # Genesis uses a default Linux bridge named br_control
-configure_genesis_br br_control eth2
-configure_genesis_br br_pub eth0
+#configure_genesis_br br_control eth2
+#configure_genesis_br br_pub eth0
 
 cleanup
 

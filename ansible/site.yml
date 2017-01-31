@@ -13,9 +13,9 @@
 - name: Install docker
   hosts: all
   roles:
-    - docker
-  tags:
-    - docker
+    - { role: docker,
+        tags: docker,
+        when: enable_docker | bool }
 
 - name: Prepare hyper
   hosts: hyper
