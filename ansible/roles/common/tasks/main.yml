@@ -50,3 +50,40 @@
     name: core.editor
     scope: global
     value: emacs
+
+- sysctl:
+    name: net.ipv4.neigh.default.gc_interval
+    value: 3600
+    sysctl_set: yes
+
+- sysctl:
+    name: net.ipv4.neigh.default.gc_stale_time
+    value: 3600
+    sysctl_set: yes
+
+- sysctl:
+    name: net.ipv4.neigh.default.gc_thresh3
+    value: 8192
+    sysctl_set: yes
+
+- sysctl:
+    name: net.ipv4.neigh.default.gc_thresh2
+    value: 4096
+    sysctl_set: yes
+
+- sysctl:
+    name: net.ipv4.neigh.default.gc_thresh1
+    value: 2048
+    sysctl_set: yes
+
+- pam_limits:
+    domain: root
+    limit_type: soft
+    limit_item: nofile
+    value: 64000
+
+- pam_limits:
+    domain: root
+    limit_type: hard
+    limit_item: nofile
+    value: 131070
