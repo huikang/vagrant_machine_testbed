@@ -44,3 +44,9 @@
     name: user.email
     scope: global
     value: "kangh@us.ibm.com"
+
+- name: Set git editor
+  git_config:
+    name: core.editor
+    scope: global
+    value: emacs
