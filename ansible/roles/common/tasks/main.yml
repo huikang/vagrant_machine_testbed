@@ -26,6 +26,8 @@
     - bison
     - flex
     - git
+    - python-software-properties
+    - software-properties-common
   when: ansible_distribution == "Ubuntu"
 
 - name: Install packages

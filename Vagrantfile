@@ -99,7 +99,7 @@ NUMBER_OF_CONTROL_NODES ||= 2
 NUMBER_OF_COMPUTE_NODES ||= 1
 NUMBER_OF_STORAGE_NODES ||= 1
 NUMBER_OF_NETWORK_NODES ||= 0
-NUMBER_OF_DOCKERDEV_NODES ||= 3
+NUMBER_OF_DOCKERDEV_NODES ||= 6
 
 NODE_SETTINGS ||= {
   aio: {
@@ -131,8 +131,8 @@ NODE_SETTINGS ||= {
     memory: 1024
   },
   dockerDev: {
-    cpus: 2,
-    memory: 2048
+    cpus: 4,
+    memory: 4096
   }
 }
 

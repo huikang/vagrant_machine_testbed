@@ -25,7 +25,7 @@
 
 - name: Download go emacs mode
   git:
-    repo: git@github.com:dominikh/go-mode.el.git
+    repo: https://github.com/dominikh/go-mode.el.git
     dest: "{{ goModePath }}"
     accept_hostkey: yes
 
