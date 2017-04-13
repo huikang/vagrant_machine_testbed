@@ -1,3 +1,6 @@
 [go-dev]
-# 192.168.35.101
-192.168.121.148  enable_docker=false
+#192.168.121.101  enable_docker=false
+#192.168.121.98  enable_docker=false
+#192.168.121.55  enable_docker=false
+#192.168.121.124  enable_docker=false
+192.168.121.67  enable_docker=false

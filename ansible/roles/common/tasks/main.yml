@@ -28,6 +28,7 @@
     - git
     - python-software-properties
     - software-properties-common
+    - uuid-runtime
   when: ansible_distribution == "Ubuntu"
 
 - name: Install packages
