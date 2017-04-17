@@ -100,6 +100,7 @@ NUMBER_OF_COMPUTE_NODES ||= 1
 NUMBER_OF_STORAGE_NODES ||= 1
 NUMBER_OF_NETWORK_NODES ||= 0
 NUMBER_OF_DOCKERDEV_NODES ||= 7
+NUMBER_OF_BLOCKCHAIN_NODES ||= 2
 
 NODE_SETTINGS ||= {
   aio: {
@@ -131,6 +132,10 @@ NODE_SETTINGS ||= {
     memory: 1024
   },
   dockerDev: {
+    cpus: 4,
+    memory: 4096
+  },
+  blockchain: {
     cpus: 4,
     memory: 4096
   }
@@ -280,7 +285,7 @@ Vagrant.configure(2) do |config|
   end
 
   if MULTINODE
-    ['compute', 'storage', 'network', 'datastore', 'control', 'dockerDev'].each do |node_type|
+    ['compute', 'storage', 'network', 'datastore', 'control', 'dockerDev', 'blockchain'].each do |node_type|
       (1..self.class.const_get("NUMBER_OF_#{node_type.upcase}_NODES")).each do |i|
         hostname = "#{node_type}0#{i}"
         config.vm.define hostname do |node|

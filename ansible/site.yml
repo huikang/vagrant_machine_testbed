@@ -113,3 +113,12 @@
     - panda
   tags:
     - panda
+
+- name: Blockchain network
+  hosts: blockchain
+
+  roles:
+    - golang
+    - blockchain
+  tags:
+    - blockchain
