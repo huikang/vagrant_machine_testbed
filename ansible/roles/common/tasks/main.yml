@@ -90,3 +90,8 @@
     limit_type: hard
     limit_item: nofile
     value: 131070
+
+- copy:
+    src: resolv.conf
+    dest: /etc/resolv.conf
+    mode: 0644
