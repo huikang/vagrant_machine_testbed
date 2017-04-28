@@ -1,3 +1,5 @@
 ---
 - name: Install k8s role
   debug: msg="Install k8s from {{ install_type }}"
+
+# Use kargo to install provisioned k8s nodes

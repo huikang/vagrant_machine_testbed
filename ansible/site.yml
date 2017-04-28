@@ -76,7 +76,6 @@
 
 - name: k8s machines
   hosts: k8s
-
   roles:
     - golang
     - k8s
@@ -113,3 +112,10 @@
     - panda
   tags:
     - panda
+
+- name: k8s cluster
+  hosts: k8s
+  roles:
+    - golang
+  tags:
+    - k8s

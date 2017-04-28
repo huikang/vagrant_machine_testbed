@@ -1,2 +1,4 @@
 [k8s]
-192.168.37.101
+172.28.128.159  enable_docker=false
+172.28.128.38  enable_docker=false
+172.28.128.231  enable_docker=false
