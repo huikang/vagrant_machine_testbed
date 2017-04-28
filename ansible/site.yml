@@ -74,9 +74,8 @@
   tags:
     - golang
 
-- name: k8s machines
+- name: k8s cluster
   hosts: k8s
-
   roles:
     - golang
     - k8s
