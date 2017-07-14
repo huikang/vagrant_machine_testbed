@@ -29,6 +29,7 @@
     - python-software-properties
     - software-properties-common
     - uuid-runtime
+    - curl
   when: ansible_distribution == "Ubuntu"
 
 - name: Install packages
