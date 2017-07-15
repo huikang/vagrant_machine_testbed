@@ -11,11 +11,14 @@
   with_items:
     - "apt-transport-https"
     - "ca-certificates"
+    - "software-properties-common"
 
 - name: Add the Docker GPG key
   apt_key:
-    keyserver: hkp://p80.pool.sks-keyservers.net:80
-    id: 58118E89F3A912897C070ADBF76221572C52609D
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+    #keyserver: hkp://p80.pool.sks-keyservers.net:80
+    #id: 58118E89F3A912897C070ADBF76221572C52609D
 
 - name: Ensure docker source exits
   file:
@@ -51,5 +54,5 @@
 
 - name: Install Docker engine
   apt:
-    name: docker-engine
+    name: docker-ce
     state: present

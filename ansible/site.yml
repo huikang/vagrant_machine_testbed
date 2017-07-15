@@ -71,6 +71,7 @@
 
   roles:
     - golang
+    - docker
   tags:
     - golang
 
