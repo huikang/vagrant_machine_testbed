@@ -30,6 +30,7 @@
     - software-properties-common
     - uuid-runtime
     - curl
+    - python-netaddr
   when: ansible_distribution == "Ubuntu"
 
 - name: Install packages
