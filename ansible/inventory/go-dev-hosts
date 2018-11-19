@@ -1,4 +1,5 @@
 [go-dev]
-# 9.59.150.4  enable_docker=false
-9.59.151.66   enable_docker=false
-9.59.151.160  enable_docker=false
+#9.12.246.35   enable_docker=true
+#9.12.246.140   enable_docker=true
+#169.61.29.10   enable_docker=true
+169.60.86.218  enable_docker=true

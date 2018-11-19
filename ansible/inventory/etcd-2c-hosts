@@ -1,0 +1,4 @@
+[go-dev]
+9.12.246.89     enable_docker=true
+9.12.246.133    enable_docker=true
+9.12.246.144    enable_docker=true

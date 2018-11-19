@@ -3,11 +3,11 @@
 # Setup golang development environment
 
 - name: Download GO binary
-  get_url: url=https://storage.googleapis.com/golang/go1.9.4.linux-amd64.tar.gz dest=/root/go1.9.4.linux-amd64.tar.gz mode=0755 validate_certs=False
+  get_url: url=https://storage.googleapis.com/golang/go1.10.2.linux-amd64.tar.gz dest=/root/go1.10.2.linux-amd64.tar.gz mode=0755 validate_certs=False
 
 - name: Install GO
   unarchive:
-    src: /root/go1.9.4.linux-amd64.tar.gz
+    src: /root/go1.10.2.linux-amd64.tar.gz
     dest: /usr/local
     copy: no
 
@@ -45,3 +45,7 @@
     path: /go/src/github.com
     state: "directory"
     recurse: yes
+
+- name: Install go swagger
+  shell: /usr/local/go/bin/go get -u github.com/go-swagger/go-swagger/cmd/swagger
+  when: ansible_distribution == "Ubuntu"
