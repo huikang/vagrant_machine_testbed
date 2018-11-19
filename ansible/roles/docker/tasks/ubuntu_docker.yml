@@ -11,6 +11,7 @@
   with_items:
     - "apt-transport-https"
     - "ca-certificates"
+    - "curl"
     - "software-properties-common"
 
 - name: Add the Docker GPG key
